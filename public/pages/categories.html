@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="ExpenseKeeper — Categories" />
+    <link rel="manifest" href="/manifest.json" />
+    <script>
+        (function() {
+            try {
+                var persisted = localStorage.getItem('ek_theme');
+                var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                var pref = persisted ? persisted : 'system';
+                var theme = pref === 'system' ? (prefersDark ? 'dark' : 'light') : pref;
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {
+                var prefersDark2 = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.setAttribute('data-theme', prefersDark2 ? 'dark' : 'light');
+            }
+        })();
+    </script>
+    <script src="/js/auth-guard.js"></script>
+    <link rel="stylesheet" href="/css/styles.css?v=1.5" />
+    <title>Categories - ExpenseKeeper</title>
+</head>
+<body>
+    <div id="app" class="app-shell" data-state="loading" aria-live="polite">
+        <aside class="nav-panel" aria-label="Primary navigation">
+            <button class="nav-panel__toggle" aria-label="Toggle navigation" data-action="toggle-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="icon"><use href="#icon-menu" /></svg>
+            </button>
+            <nav class="nav-panel__items" role="navigation">
+                <a href="/pages/dashboard.html" class="nav-item" aria-label="Dashboard">
+                    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="icon"><use href="#icon-dashboard" /></svg>
+                </a>
+                <a href="/pages/income.html" class="nav-item" aria-label="Income">
+                    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="icon"><use href="#icon-income" /></svg>
+                </a>
+                <a href="/pages/categories.html" class="nav-item nav-item--active" aria-label="Categories" aria-current="page">
+                    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="icon"><use href="#icon-budgets" /></svg>
+                </a>
+                <a href="/pages/statistics.html" class="nav-item" aria-label="Statistics">
+                    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="icon"><use href="#icon-stats" /></svg>
+                </a>
+                <a href="/pages/savings.html" class="nav-item" aria-label="Savings">
+                    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="icon"><use href="#icon-savings" /></svg>
+                </a>
+                <a href="/pages/settings.html" class="nav-item" aria-label="Settings">
+                    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="icon"><use href="#icon-settings-gear" /></svg>
+                </a>
+            </nav>
+        </aside>
+        <main id="main" class="content" tabindex="-1">
+            <header class="content__header">
+                <div id="filters" class="filter-group" role="region" aria-label="Filters"></div>
+            </header>
+            <section id="view-container" class="view-container" aria-live="polite"></section>
+        </main>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="assertive" hidden></div>
+
+    <script type="module" src="/js/pages/categories.js"></script>
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></symbol>
+        <symbol id="icon-dashboard" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.918 10.0005H7.082C6.66587 9.99708 6.26541 10.1591 5.96873 10.4509C5.67204 10.7427 5.50343 11.1404 5.5 11.5565V17.4455C5.5077 18.3117 6.21584 19.0078 7.082 19.0005H9.918C10.3341 19.004 10.7346 18.842 11.0313 18.5502C11.328 18.2584 11.4966 17.8607 11.5 17.4445V11.5565C11.4966 11.1404 11.328 10.7427 11.0313 10.4509C10.7346 10.1591 10.3341 9.99708 9.918 10.0005Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M9.918 4.0006H7.082C6.23326 3.97706 5.52559 4.64492 5.5 5.4936V6.5076C5.52559 7.35629 6.23326 8.02415 7.082 8.0006H9.918C10.7667 8.02415 11.4744 7.35629 11.5 6.5076V5.4936C11.4744 4.64492 10.7667 3.97706 9.918 4.0006Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.082 13.0007H17.917C18.3333 13.0044 18.734 12.8425 19.0309 12.5507C19.3278 12.2588 19.4966 11.861 19.5 11.4447V5.55666C19.4966 5.14054 19.328 4.74282 19.0313 4.45101C18.7346 4.1592 18.3341 3.9972 17.918 4.00066H15.082C14.6659 3.9972 14.2654 4.1592 13.9687 4.45101C13.672 4.74282 13.5034 5.14054 13.5 5.55666V11.4447C13.5034 11.8608 13.672 12.2585 13.9687 12.5503C14.2654 12.8421 14.6659 13.0041 15.082 13.0007Z"/><path fill-rule="evenodd" clip-rule="evenodd" d="M15.082 19.0006H17.917C18.7661 19.0247 19.4744 18.3567 19.5 17.5076V16.4936C19.4744 15.6449 18.7667 14.9771 17.918 15.0006H15.082C14.2333 14.9771 13.5256 15.6449 13.5 16.4936V17.5066C13.525 18.3557 14.2329 19.0241 15.082 19.0006Z"/></symbol>
+        <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></symbol>
+        <symbol id="icon-income" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5008 14.1502H16.5098M19 4.00098H6.2C5.0799 4.00098 4.51984 4.00098 4.09202 4.21896C3.71569 4.41071 3.40973 4.71667 3.21799 5.093C3 5.52082 3 6.08087 3 7.20098V16.801C3 17.9211 3 18.4811 3.21799 18.909C3.40973 19.2853 3.71569 19.5912 4.09202 19.783C4.51984 20.001 5.07989 20.001 6.2 20.001H17.8C18.9201 20.001 19.4802 20.001 19.908 19.783C20.2843 19.5912 20.5903 19.2853 20.782 18.909C21 18.4811 21 17.9211 21 16.801V11.201C21 10.0809 21 9.52082 20.782 9.093C20.5903 8.71667 20.2843 8.41071 19.908 8.21896C19.4802 8.00098 18.9201 8.00098 17.8 8.00098H7M16.9508 14.1502C16.9508 14.3987 16.7493 14.6002 16.5008 14.6002C16.2523 14.6002 16.0508 14.3987 16.0508 14.1502C16.0508 13.9017 16.2523 13.7002 16.5008 13.7002C16.7493 13.7002 16.9508 13.9017 16.9508 14.1502Z"/></symbol>
+        <symbol id="icon-budgets" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.9497 17.9497L15 13H22C22 14.933 21.2165 16.683 19.9497 17.9497Z"/><path d="M20 10C20 6.13401 16.866 3 13 3V10H20Z"/><path d="M2 12C2 16.4183 5.58172 20 10 20C12.2091 20 14.2091 19.1046 15.6569 17.6569L10 12V4C5.58172 4 2 7.58172 2 12Z"/></symbol>
+        <symbol id="icon-stats" viewBox="0 0 26 32" fill="currentColor" stroke="none"><path d="M14,0 L12,0 C10.896,0 10,0.896 10,2 L10,30 C10,31.104 10.896,32 12,32 L14,32 C15.104,32 16,31.104 16,30 L16,2 C16,0.896 15.104,0 14,0 L14,0 Z M24,16 L22,16 C20.896,16 20,16.896 20,18 L20,30 C20,31.104 20.896,32 22,32 L24,32 C25.104,32 26,31.104 26,30 L26,18 C26,16.896 25.104,16 24,16 L24,16 Z M4,9 L2,9 C0.896,9 0,9.896 0,11 L0,30 C0,31.104 0.896,32 2,32 L4,32 C5.104,32 6,31.104 6,30 L6,11 C6,9.896 5.104,9 4,9 L4,9 Z"/></symbol>
+        <symbol id="icon-savings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12,4.84c0,.78-.83,1.48-2.11,1.91a9.55,9.55,0,0,1-3.14.48,9.55,9.55,0,0,1-3.14-.48C2.33,6.32,1.5,5.62,1.5,4.84c0-1.32,2.35-2.39,5.25-2.39S12,3.52,12,4.84Z"/><path d="M12,4.84V8.66c0,.78-.83,1.48-2.11,1.91a9.82,9.82,0,0,1-3.14.48,9.82,9.82,0,0,1-3.14-.48C2.33,10.14,1.5,9.44,1.5,8.66V4.84c0,.78.83,1.48,2.11,1.91a9.55,9.55,0,0,0,3.14.48,9.55,9.55,0,0,0,3.14-.48C11.17,6.32,12,5.62,12,4.84Z"/><path d="M12,8.66v3.82c0,.78-.83,1.48-2.11,1.91a9.84,9.84,0,0,1-3.14.47,9.84,9.84,0,0,1-3.14-.47C2.33,14,1.5,13.26,1.5,12.48V8.66c0,.78.83,1.48,2.11,1.91a9.82,9.82,0,0,0,3.14.48,9.82,9.82,0,0,0,3.14-.48C11.17,10.14,12,9.44,12,8.66Z"/><path d="M12,12.48V16.3c0,1.31-2.35,2.38-5.25,2.38S1.5,17.61,1.5,16.3V12.48c0,.78.83,1.48,2.11,1.91a9.84,9.84,0,0,0,3.14.47,9.84,9.84,0,0,0,3.14-.47C11.17,14,12,13.26,12,12.48Z"/><path d="M22.5,12.48V16.3c0,1.31-2.35,2.38-5.25,2.38S12,17.61,12,16.3V12.48c0,.78.83,1.48,2.11,1.91a9.84,9.84,0,0,0,3.14.47,9.84,9.84,0,0,0,3.14-.47C21.67,14,22.5,13.26,22.5,12.48Z"/><path d="M12,12.48v7.63c0,1.32-2.35,2.39-5.25,2.39S1.5,21.43,1.5,20.11V12.48"/><path d="M22.5,13.48v6.63c0,1.32-2.35,2.39-5.25,2.39S12,21.43,12,20.11V12.48"/><path d="M22.5,6.75A5.25,5.25,0,1,1,17.25,1.5,5.2,5.2,0,0,1,22.5,6.75Z"/><path d="M22.5,12.48c0,.78-.83,1.48-2.11,1.91a9.84,9.84,0,0,1-3.14.47,9.84,9.84,0,0,1-3.14-.47C12.83,14,12,13.26,12,12.48s.69-1.36,1.78-1.8a5.22,5.22,0,0,0,6.94,0C21.81,11.12,22.5,11.76,22.5,12.48Z"/></symbol>
+        <symbol id="icon-settings-gear" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12L6 5"/><path d="M12 8L12 5"/><path d="M6 19L6 16"/><path d="M18 19L18 17"/><path d="M12 19L12 12"/><path d="M10 8L14 8"/><path d="M4 16L8 16"/><path d="M16 17H20"/><path d="M18 13L18 5"/></symbol>
+        <symbol id="icon-cloud-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 17.58A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 4 16.25"></path><polyline points="16 16 12 20 8 16"></polyline><line x1="12" y1="12" x2="12" y2="20"></line></symbol>
+        <symbol id="icon-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></symbol>
+        <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></symbol>
+        <symbol id="icon-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></symbol>
+        <symbol id="icon-transfer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></symbol>
+    </svg>
+</body>
+</html>

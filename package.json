@@ -1,0 +1,32 @@
+{
+  "name": "expensekeeper",
+  "version": "0.1.0",
+  "description": "ExpenseKeeper — Simple, mobile-first expense tracker",
+  "main": "server/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'No build step required'",
+    "dev": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "lint": "echo \"No lint step configured yet\"",
+    "test": "node tests/run-tests.js",
+    "seed": "node server/scripts/seed.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "express-session": "^1.17.3",
+    "json2csv": "^5.0.7",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "nanoid": "^5.0.7",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
