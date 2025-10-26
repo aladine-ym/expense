@@ -4,7 +4,7 @@ import { dbGet, dbRun } from '../utils/db.js';
 import crypto from 'crypto';
 
 const ADMIN_USERNAME = 'admin';
-const ADMIN_PASSWORD = '13072901';
+const ADMIN_PASSWORD = '123';
 const ADMIN_ID = 'local-user'; // Use existing local-user ID
 
 function hashPassword(password) {
@@ -73,7 +73,7 @@ async function createAdminUser() {
 
         console.log('\n📋 Admin Credentials:');
         console.log('   Username: admin');
-        console.log('   Password: 13072901');
+        console.log('   Password: 123');
         console.log('\n🔒 Password is securely hashed in database');
         
     } catch (error) {
