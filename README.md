@@ -40,14 +40,14 @@ ExpenseKeeper is a mobile-first, offline-capable expense tracker built with vani
 2. **Connect your GitHub repository**
 3. **Railway will auto-detect** your Node.js app
 4. **Set environment variables** in Railway dashboard:
-   - `CLIENT_ORIGIN` = `https://your-app-name.up.railway.app`
-   - `SESSION_SECRET` = Generate a secure random string
+   - `CLIENT_ORIGIN` = `https://ak-expenses.up.railway.app`
+   - `SESSION_SECRET` = `a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6`
    - `NODE_ENV` = `production`
    - Leave other variables as default or configure as needed
 
 5. **Deploy!** Railway will build and deploy automatically
 
-Your app will be live at `https://your-app-name.up.railway.app`
+Your app will be live at `https://ak-expenses.up.railway.app`
 
 ### Environment Variables for Production
 
@@ -58,9 +58,9 @@ cp .env.example .env
 ```
 
 Required for production:
-- `SESSION_SECRET` — Generate a secure random string (not the default!)
-- `CLIENT_ORIGIN` — Your Railway domain
-- `NODE_ENV=production` — Enables security features
+- `SESSION_SECRET` — `a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6` (secure 64-character string)
+- `CLIENT_ORIGIN` — `https://ak-expenses.up.railway.app`
+- `NODE_ENV` — `production`
 
 ## Features
 
